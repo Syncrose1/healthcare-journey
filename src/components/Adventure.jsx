@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AlertCircle, Users, FileText, Heart, ArrowRight, RefreshCcw, CheckCircle, Lightbulb, BookOpen, Building } from 'lucide-react';
-import { Card } from "@/components/ui/card";
 
 const Adventure = () => {
   const [currentScene, setCurrentScene] = useState('start');
@@ -76,16 +75,6 @@ const Adventure = () => {
       learning: "Patient stories are crucial for understanding the human impact of healthcare failures",
       icon: Users
     },
-    communication_issues: {
-      title: "Communication Barriers",
-      content: "Your investigation reveals significant gaps in communication between healthcare providers and families. How do you address this?",
-      choices: [
-        { text: "Develop new communication protocols", next: "safe_space_end" },
-        { text: "Create feedback mechanisms", next: "reporting_end" },
-        { text: "Address cultural barriers", next: "culture_end" }
-      ],
-      icon: Users
-    },
     safe_space: {
       title: "Creating a Safe Environment",
       content: "You establish confidential channels for families to share their experiences. The response is overwhelming. What's your next step?",
@@ -126,6 +115,16 @@ const Adventure = () => {
       ],
       icon: FileText
     },
+    communication_issues: {
+      title: "Communication Barriers",
+      content: "Your investigation reveals significant gaps in communication between healthcare providers and families. How do you address this?",
+      choices: [
+        { text: "Develop new communication protocols", next: "safe_space_end" },
+        { text: "Create feedback mechanisms", next: "reporting_end" },
+        { text: "Address cultural barriers", next: "culture_end" }
+      ],
+      icon: Users
+    },
     staffing: {
       title: "Staffing and Resources",
       content: "Your analysis reveals concerning patterns in staffing levels and resource allocation. What's your priority?",
@@ -135,16 +134,6 @@ const Adventure = () => {
         { text: "Address organizational barriers", next: "culture_end" }
       ],
       icon: Building
-    },
-    culture: {
-      title: "Cultural Assessment",
-      content: "You focus on understanding the hospital's culture. Staff begin opening up about various concerns. What do you investigate next?",
-      choices: [
-        { text: "Barriers to speaking up", next: "speaking_up" },
-        { text: "Leadership accountability", next: "leadership" },
-        { text: "Learning from incidents", next: "learning" }
-      ],
-      icon: Users
     },
     speaking_up: {
       title: "Breaking Down Barriers",
@@ -186,7 +175,7 @@ const Adventure = () => {
     if (!summary) return null;
 
     return (
-      <Card className="p-6">
+      <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-6 flex items-center">
           <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
           Journey Complete: {summary.title}
@@ -239,17 +228,14 @@ const Adventure = () => {
           <RefreshCcw className="w-4 h-4 mr-2" />
           Start New Journey
         </button>
-      </Card>
+      </div>
     );
   };
-
-  const currentSceneData = scenes[currentScene];
-  const Icon = currentSceneData?.icon || AlertCircle;
 
   if (!scenes[currentScene]) {
     return (
       <div className="max-w-4xl mx-auto p-6">
-        <Card className="p-6">
+        <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-2xl font-bold mb-6 flex items-center">
             <AlertCircle className="w-6 h-6 text-red-500 mr-2" />
             Scene Not Found
@@ -262,7 +248,7 @@ const Adventure = () => {
             <RefreshCcw className="w-4 h-4 mr-2" />
             Start New Journey
           </button>
-        </Card>
+        </div>
       </div>
     );
   }
@@ -272,7 +258,7 @@ const Adventure = () => {
       {!showSummary ? (
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="flex items-center mb-6">
-            <Icon className="w-8 h-8 text-blue-500 mr-4" />
+            {React.createElement(scenes[currentScene].icon, { className: "w-8 h-8 text-blue-500 mr-4" })}
             <h1 className="text-3xl font-bold">{scenes[currentScene].title}</h1>
           </div>
 
