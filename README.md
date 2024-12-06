@@ -1,4 +1,4 @@
-# Hey guys, Raahat here. 
+# Hey guys 
 
 I wrote my BM4 Y2 Week 11 Graduate Group presentation in some basic React and Vite mainly just using basic pre-built components.
 
