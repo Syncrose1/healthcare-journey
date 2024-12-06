@@ -1,3 +1,4 @@
+import './index.css'
 import Adventure from './components/Adventure'
 
 function App() {

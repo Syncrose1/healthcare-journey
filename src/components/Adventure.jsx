@@ -185,21 +185,21 @@ const Adventure = () => {
     if (!summary) return null;
 
     return (
-      <Card className="p-6">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold mb-6 flex items-center text-gray-900">
           <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
           Journey Complete: {summary.title}
         </h2>
 
         <div className="space-y-6">
           <div>
-            <h3 className="text-xl font-semibold mb-3 flex items-center">
+            <h3 className="text-xl font-semibold mb-3 flex items-center text-gray-800">
               <Lightbulb className="w-5 h-5 text-yellow-500 mr-2" />
               Key Learnings
             </h3>
             <ul className="space-y-2">
               {summary.keyLearnings.map((learning, index) => (
-                <li key={index} className="flex items-start">
+                <li key={index} className="flex items-start text-gray-700">
                   <span className="text-green-500 mr-2">•</span>
                   {learning}
                 </li>
@@ -208,13 +208,13 @@ const Adventure = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-3 flex items-center">
+            <h3 className="text-xl font-semibold mb-3 flex items-center text-gray-800">
               <ArrowRight className="w-5 h-5 text-blue-500 mr-2" />
               Recommended Next Steps
             </h3>
             <ul className="space-y-2">
               {summary.recommendations.map((rec, index) => (
-                <li key={index} className="flex items-start">
+                <li key={index} className="flex items-start text-gray-700">
                   <span className="text-blue-500 mr-2">•</span>
                   {rec}
                 </li>
@@ -223,11 +223,11 @@ const Adventure = () => {
           </div>
 
           <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2 flex items-center">
+            <h3 className="text-xl font-semibold mb-2 flex items-center text-gray-800">
               <BookOpen className="w-5 h-5 text-blue-500 mr-2" />
               Ockenden Report Connection
             </h3>
-            <p>{summary.ockendenLink}</p>
+            <p className="text-gray-700">{summary.ockendenLink}</p>
           </div>
         </div>
 
@@ -238,22 +238,19 @@ const Adventure = () => {
           <RefreshCcw className="w-4 h-4 mr-2" />
           Start New Journey
         </button>
-      </Card>
+      </div>
     );
   };
-
-  const currentSceneData = scenes[currentScene];
-  const Icon = currentSceneData?.icon || AlertCircle;
 
   if (!scenes[currentScene]) {
     return (
       <div className="max-w-4xl mx-auto p-6">
-        <Card className="p-6">
-          <h2 className="text-2xl font-bold mb-6 flex items-center">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-2xl font-bold mb-6 flex items-center text-gray-900">
             <AlertCircle className="w-6 h-6 text-red-500 mr-2" />
             Scene Not Found
           </h2>
-          <p className="mb-4">Sorry, something went wrong with the journey.</p>
+          <p className="mb-4 text-gray-700">Sorry, something went wrong with the journey.</p>
           <button 
             onClick={restart}
             className="w-full p-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center"
@@ -261,7 +258,7 @@ const Adventure = () => {
             <RefreshCcw className="w-4 h-4 mr-2" />
             Start New Journey
           </button>
-        </Card>
+        </div>
       </div>
     );
   }
@@ -271,12 +268,12 @@ const Adventure = () => {
       {!showSummary ? (
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="flex items-center mb-6">
-            <Icon className="w-8 h-8 text-blue-500 mr-4" />
-            <h1 className="text-3xl font-bold">{scenes[currentScene].title}</h1>
+            {React.createElement(scenes[currentScene].icon, { className: "w-8 h-8 text-blue-500 mr-4" })}
+            <h1 className="text-3xl font-bold text-gray-900">{scenes[currentScene].title}</h1>
           </div>
 
           <div className="mb-8">
-            <p className="text-xl leading-relaxed">{scenes[currentScene].content}</p>
+            <p className="text-xl leading-relaxed text-gray-700">{scenes[currentScene].content}</p>
           </div>
 
           <div className="space-y-4">
@@ -284,7 +281,7 @@ const Adventure = () => {
               <button
                 key={index}
                 onClick={() => handleChoice(choice.next)}
-                className="w-full p-4 text-left rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-500 transition-all flex items-center justify-between"
+                className="w-full p-4 text-left rounded-lg border border-gray-200 hover:bg-blue-50 hover:border-blue-500 transition-all flex items-center justify-between text-gray-800"
               >
                 <span className="text-lg">{choice.text}</span>
                 <ArrowRight className="w-5 h-5 text-blue-500" />
