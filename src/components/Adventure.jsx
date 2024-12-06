@@ -185,7 +185,7 @@ const Adventure = () => {
     if (!summary) return null;
 
     return (
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold mb-6 flex items-center text-gray-900">
           <CheckCircle className="w-6 h-6 text-green-500 mr-2" />
           Journey Complete: {summary.title}
